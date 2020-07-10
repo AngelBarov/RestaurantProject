@@ -2,6 +2,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,25 +23,5 @@ class SaveTest {
             }
             assertEquals(restaurants.size(), savedR);
         }catch (Exception e){}
-    }
-    @Test
-    public void TestLoading() {
-        int howMuch=0;
-        ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("listOfRestaurants.csv"));
-            String line = br.readLine();
-            while(line!=null){
-                howMuch++;
-                String[] values = line.split(",");
-                restaurants.add(new Restaurant(values[0], values[1], values[2], Integer.parseInt(values[3]), Boolean.parseBoolean(values[4]), Boolean.parseBoolean(values[5]), Double.parseDouble(values[6]), Double.parseDouble(values[7])));
-            }
-        }catch (FileNotFoundException e){
-            e.printStackTrace();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-        assertEquals(howMuch, 2);
-        assertEquals(restaurants.get(0).getName(), "r1");
     }
 }

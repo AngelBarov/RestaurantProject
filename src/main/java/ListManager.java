@@ -2,6 +2,8 @@
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ListManager {
     public ArrayList<Restaurant> load(){
@@ -10,8 +12,10 @@ public class ListManager {
             BufferedReader br = new BufferedReader(new FileReader("listOfRestaurants.csv"));
             String line = br.readLine();
             while(line!=null){
-                String[] values = line.split(",");
-                restaurants.add(new Restaurant(values[0], values[1], values[2], Integer.parseInt(values[3]), Boolean.parseBoolean(values[4]), Boolean.parseBoolean(values[5]), Double.parseDouble(values[6]), Double.parseDouble(values[7])));
+                List<String> values = Arrays.asList(line.split(","));
+                if(Boolean.parseBoolean(values.get(2)))restaurants.add(new Restaurant(values.get(0), values.get(1), values.get(3), Integer.parseInt(values.get(5)), Boolean.parseBoolean(values.get(6)), Boolean.parseBoolean(values.get(7)), Double.parseDouble(values.get(8)), Double.parseDouble(values.get(9))));
+                else restaurants.add(new Restaurant(values.get(0), values.get(1), null,  Integer.parseInt(values.get(4)), Boolean.parseBoolean(values.get(5)), Boolean.parseBoolean(values.get(6)), Double.parseDouble(values.get(7)), Double.parseDouble(values.get(8))));
+                line = br.readLine();
             }
         }catch (FileNotFoundException e){
             e.printStackTrace();
@@ -29,14 +33,19 @@ public class ListManager {
                 sb.append(',');
                 sb.append(restaurant.getAddress().trim());
                 sb.append(',');
-                sb.append(restaurant.getPlaces());
-                sb.append(',');
-                sb.append(restaurant.isDinnerMenu());
+                sb.append(restaurant.isNumber());
                 sb.append(',');
                 if(restaurant.isNumber()){
                     sb.append(restaurant.getTelNumber().trim());
                     sb.append(',');
                 }
+                sb.append(',');
+                sb.append(restaurant.getPlaces());
+                sb.append(',');
+                sb.append(restaurant.isOutside());
+                sb.append(',');
+                sb.append(restaurant.isDinnerMenu());
+                sb.append(',');
                 sb.append(restaurant.getLongtitude());
                 sb.append(',');
                 sb.append(restaurant.getLatitude());
