@@ -23,6 +23,18 @@ public class Restaurant {
         if(telNumber!=null)this.number=true;
         this.telNumber=telNumber;
     }
+    public Restaurant(String name, String address, String telNumber, int places, boolean outside, boolean dinnerMenu, double longtitude, double latitude, UUID uuid){
+        this.uuid = uuid;
+        this.address=address;
+        this.name=name;
+        this.places=places;
+        this.outside=outside;
+        this.dinnerMenu=dinnerMenu;
+        this.longtitude=longtitude;
+        this.latitude=latitude;
+        if(telNumber!=null)this.number=true;
+        this.telNumber=telNumber;
+    }
 
     public String getName() {
         return name;
@@ -64,12 +76,15 @@ public class Restaurant {
         return outside;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
     public static void main (String... args) {
         ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
         ListManager listManager = new ListManager();
         restaurants = listManager.load();
-        restaurants.add(new Restaurant("Skara Bara", "Poligraficheski kombinat", null,60, true, true, 239.012901, 102.219));
-        restaurants.add(new Restaurant("Mimas", "Grafa", "0885524612", 15, true, false, 49.012901, 32.219));
         listManager.save(restaurants);
     }
 }
