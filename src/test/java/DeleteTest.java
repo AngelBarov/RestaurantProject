@@ -12,10 +12,10 @@ class DeleteTest {
         ListManager listManager = new ListManager();
         ArrayList<Restaurant> restaurants = listManager.load();
         int size = restaurants.size();
+        listManager.deleteId(restaurants.get(0).getUuid());
         restaurants.removeIf(i->i.getUuid()==restaurants.get(0).getUuid());
-        listManager.save(restaurants);
+        int size2=restaurants.size();
         ArrayList<Restaurant> restaurants1 = listManager.load();
-        int size1=restaurants1.size();
-        assertEquals(size1, size-1);
+        assertEquals(restaurants1.size(), size2);
     }
 }
