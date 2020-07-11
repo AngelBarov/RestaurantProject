@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
@@ -10,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LoadTest {
     @Test
+    @Order(2)
     public void TestLoading() {
         int howMuch=0;
         ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();

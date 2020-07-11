@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
@@ -9,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SaveTest {
     @Test
+    @Order(3)
     public void TestSaving() {
         ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
         restaurants.add(new Restaurant("r1", "a1", null, 13, true, true, 23.239, 45.2837));

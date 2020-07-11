@@ -25,6 +25,11 @@ public class ListManager {
         }
         return restaurants;
     }
+    public void deleteId(UUID uuid){
+        ArrayList<Restaurant> restaurants = load();
+        restaurants.removeIf(i->i.getUuid()==uuid);
+        save(restaurants);
+    }
     public void save(ArrayList<Restaurant> restaurants){
         try{
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("listOfRestaurants.csv"), "UTF-8"));

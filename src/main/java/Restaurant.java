@@ -85,6 +85,9 @@ public class Restaurant {
         ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
         ListManager listManager = new ListManager();
         restaurants = listManager.load();
+        restaurants.add(new Restaurant("r1", "a1", null, 13, true, true, 23.239, 45.2837));
+        restaurants.add(new Restaurant("r2", "a2", "088456788", 45, true, false, 30.239, 2.327));
+        listManager.deleteId(restaurants.get(0).getUuid());
         listManager.save(restaurants);
     }
 }
