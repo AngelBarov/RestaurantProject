@@ -13,7 +13,7 @@ class DeleteTest {
         ArrayList<Restaurant> restaurants = listManager.load();
         int size = restaurants.size();
         listManager.deleteId(restaurants.get(0).getUuid());
-        restaurants.removeIf(i->i.getUuid()==restaurants.get(0).getUuid());
+        restaurants.removeIf(i->i.getUuid().equals(restaurants.get(0).getUuid()));
         int size2=restaurants.size();
         ArrayList<Restaurant> restaurants1 = listManager.load();
         assertEquals(restaurants1.size(), size2);

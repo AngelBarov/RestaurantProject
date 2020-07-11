@@ -7,6 +7,13 @@ import java.util.List;
 import java.util.UUID;
 
 public class ListManager {
+    public Restaurant findById(UUID uuid){
+        ArrayList<Restaurant> restaurants = load();
+        for(Restaurant restaurant:restaurants){
+            if(restaurant.getUuid().equals(uuid))return restaurant;
+        }
+        return null;
+    }
     public ArrayList<Restaurant> load(){
         ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
         try {
@@ -25,9 +32,9 @@ public class ListManager {
         }
         return restaurants;
     }
-    public void deleteId(UUID uuid){
+    public void deleteId(UUID uuid) throws IndexOutOfBoundsException{
         ArrayList<Restaurant> restaurants = load();
-        restaurants.removeIf(i->i.getUuid()==uuid);
+        restaurants.removeIf(i->i.getUuid().equals(uuid));
         save(restaurants);
     }
     public void save(ArrayList<Restaurant> restaurants){
