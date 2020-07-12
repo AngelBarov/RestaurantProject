@@ -9,7 +9,24 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LoadTest {
+class RestaurantTest {
+    @Test
+    @Order(1)
+    public void TestSaving() {
+        ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
+        restaurants.add(new Restaurant("r1", "a1", null, 13, true, true, 23.239, 45.2837));
+        restaurants.add(new Restaurant("r2", "a2", "088456788", 45, true, false, 30.239, 2.327));
+        ListManager listManager = new ListManager();
+        listManager.save(restaurants);
+        try{
+            BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream("listOfRestaurants.csv"), "UTF-8"));
+            int savedR = 0;
+            while(bf.readLine().toString()!=null){
+                savedR++;
+            }
+            assertEquals(restaurants.size(), savedR);
+        }catch (Exception e){}
+    }
     @Test
     @Order(2)
     public void TestLoading() {
@@ -32,5 +49,16 @@ class LoadTest {
         }
         assertEquals(howMuch, 2);
     }
-
+    @Test
+    @Order(3)
+    public void TestDelete () {
+        ListManager listManager = new ListManager();
+        ArrayList<Restaurant> restaurants = listManager.load();
+        int size = restaurants.size();
+        listManager.deleteId(restaurants.get(0).getUuid());
+        restaurants.removeIf(i->i.getUuid().equals(restaurants.get(0).getUuid()));
+        int size2=restaurants.size();
+        ArrayList<Restaurant> restaurants1 = listManager.load();
+        assertEquals(restaurants1.size(), size2);
+    }
 }
