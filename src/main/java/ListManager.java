@@ -14,6 +14,13 @@ public class ListManager {
         }
         return null;
     }
+    public Restaurant findByName(String name){
+        ArrayList<Restaurant> restaurants = load();
+        for(Restaurant restaurant:restaurants){
+            if(restaurant.getName().equals(name))return restaurant;
+        }
+        return null;
+    }
     public ArrayList<Restaurant> load(){
         ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
         try {

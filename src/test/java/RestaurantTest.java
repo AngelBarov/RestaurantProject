@@ -61,4 +61,18 @@ class RestaurantTest {
         ArrayList<Restaurant> restaurants1 = listManager.load();
         assertEquals(restaurants1.size(), size2);
     }
+    @Test
+    @Order(4)
+    public void TestFindById(){
+        ArrayList<Restaurant> restaurants = new ListManager().load();
+        Restaurant restaurant = new ListManager().findById(restaurants.get(0).getUuid());
+        assertEquals(restaurants.get(0).getName(), restaurant.getName());
+    }
+    @Test
+    @Order(4)
+    public void TestFindByName(){
+        ArrayList<Restaurant> restaurants = new ListManager().load();
+        Restaurant restaurant = new ListManager().findByName(restaurants.get(0).getName());
+        assertEquals(restaurants.get(0).getTelNumber(), restaurant.getTelNumber());
+    }
 }
