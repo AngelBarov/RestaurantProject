@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.UUID;
+import java.util.*;
 
 public class Restaurant {
     private UUID uuid;
@@ -80,7 +78,7 @@ public class Restaurant {
 
 
     public static void main (String... args) {
-        ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
+        Set<Restaurant> restaurants = new HashSet<Restaurant>();
         ListManager listManager = new ListManager();
     }
 }
